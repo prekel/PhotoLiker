@@ -7,7 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 
-using VkApiOAuth;
+//using VkApiOAuth;
 
 using VkNet;
 using VkNet.Enums;
