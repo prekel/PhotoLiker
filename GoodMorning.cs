@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-using VkApiOAuth;
+//using VkApiOAuth;
 
 using VkNet;
 using VkNet.Enums;

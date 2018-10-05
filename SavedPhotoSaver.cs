@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net; 
 
-using VkApiOAuth;
+//using VkApiOAuth;
 
 using VkNet;
 using VkNet.Enums;
@@ -45,7 +45,8 @@ namespace PhotoLiker
 				{
 					//var uri = i.Sizes.Last().Src;
 					var mxw = i.Sizes.Max(j => j.Width);
-					var uri = i.Sizes.First(j => j.Width == mxw).Src;
+					//var uri = i.Sizes.First(j => j.Width == mxw).Src;
+					var uri = i.Sizes.First(j => j.Width == mxw).Url;
 					wc.DownloadFile(uri, $"{dirname}{@"\"}{i.CreateTime.Value.ToShortDateString().Replace("/", "-")} {i.CreateTime.Value.ToLongTimeString().Replace(":", "-")}.jpg");
 				}
 			}
