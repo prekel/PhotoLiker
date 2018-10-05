@@ -1,0 +1,101 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{E798403C-C7A3-4601-861E-9820DA16B9AE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>PhotoLiker</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoLiker.cs" />
+    <Compile Include="GoodMorning.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="SavedPhotoLiker.cs" />
+    <Compile Include="SavedPhotoSaver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\init" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\heads\proj" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\objects\0b\8e3385bc572ed55080dfae8ea69806c4c1020d" />
+    <None Include=".git\objects\13\ac2453f8d8ed5791c7c08a8f23b6de131fb5ee" />
+    <None Include=".git\objects\2f\ad1875900004fa1ad1e10c51a93b9a4881bd38" />
+    <None Include=".git\objects\3e\759b75bf455ac809d0987d369aab89137b5689" />
+    <None Include=".git\objects\b2\0d6b3a11b309effa117864c08c6239b5325702" />
+    <None Include=".git\objects\b3\bb1e0c4cefd593a9844fe1ad894649e6d22906" />
+    <None Include=".git\objects\b9\405ea6dd7b0d36b0b1a4671bcd9f8dbb5ba5ee" />
+    <None Include=".git\objects\cf\91c4918d28021336491e0a4b290b372d0e8f6d" />
+    <None Include=".git\objects\d9\9f99127d450a37b17bfa4bca21e98889397776" />
+    <None Include=".git\objects\dc\52c5ebfda845af97fd7a89909e652297a9acaf" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\init" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\heads\proj" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
