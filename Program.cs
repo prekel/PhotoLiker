@@ -24,22 +24,36 @@ namespace PhotoLiker
 	{
 		public class Config
 		{
-			public ulong AppId { get; set; } 
-			
+			public ulong AppId { get; set; }
+
 			public string Login { get; set; }
 
-			public enum AppMode { AutoLiker = 1, Liker = 2, GoodMorning = 4, Saver = 8 }
+			public enum AppMode { AutoLiker = 1, Liker = 2, GoodMorning = 4, Saver = 8, HappyNewYear = 16 }
 			public AppMode Mode { get; set; }
 
-			public long[] AutoLikerIds { get; set; }
+			public IList<long> AutoLikerIds { get; set; }
 
 			public TimeSpan LikerWaitOfflineTime { get; set; }
 			public long LikerId { get; set; }
 			public int LikerCount { get; set; }
 
-			public long GoodMorningId { get; set; }
-			public string GoodMorningMessage { get; set; }
-			public TimeSpan GoodMorningDelay { get; set; }
+			public class GoodMorningEntity
+			{
+				public long GoodMorningId { get; set; }
+				public string GoodMorningMessage { get; set; }
+				public TimeSpan GoodMorningDelay { get; set; }
+			}
+
+			public IList<GoodMorningEntity> GoodMornings { get; set; }
+
+			public class HappyNewYearEntity
+			{
+				public long HappyNewYearId { get; set; }
+				public string HappyNewYearMessage { get; set; }
+				public DateTimeOffset HappyNewTime { get; set; }
+			}
+
+			public IList<HappyNewYearEntity> NewYears { get; set; }
 
 			public long SaverId { get; set; }
 		}
@@ -49,8 +63,26 @@ namespace PhotoLiker
 			var api = new VkApi();
 			var r = new Random();
 
-			var configjson = new StreamReader("config.json", Encoding.Default).ReadToEnd();
-			var config = JsonConvert.DeserializeObject<Config>(configjson);
+			Config config;
+			try
+			{
+				var configjson = new StreamReader("config.json", Encoding.Default).ReadToEnd();
+				config = JsonConvert.DeserializeObject<Config>(configjson);
+			}
+			catch (FileNotFoundException e)
+			{
+				config = new Config
+				{
+					//AutoLikerIds = new List<long>(new[] { 0L }),
+					//GoodMornings = new List<Config.GoodMorningEntity>(new[] { new Config.GoodMorningEntity(), new Config.GoodMorningEntity() }),
+					NewYears = new List<Config.HappyNewYearEntity>(new[] { new Config.HappyNewYearEntity(), new Config.HappyNewYearEntity(),  })
+				};
+				using (var w = new StreamWriter("config.json"))
+				{
+					w.WriteLine(JsonConvert.SerializeObject(config, Formatting.Indented));
+				}
+				Environment.Exit(-1);
+			}
 
 			{
 				var email = config.Login;
@@ -95,8 +127,11 @@ namespace PhotoLiker
 
 			if (config.Mode.HasFlag(Config.AppMode.GoodMorning))
 			{
-				new GoodMorning(api, config.GoodMorningId, config.GoodMorningMessage, config.GoodMorningDelay)
-					.Begin();
+				foreach (var i in config.GoodMornings)
+				{
+					new GoodMorning(api, i.GoodMorningId, i.GoodMorningMessage, i.GoodMorningDelay)
+						.Begin();
+				}
 			}
 
 			if (config.Mode.HasFlag(Config.AppMode.Saver))

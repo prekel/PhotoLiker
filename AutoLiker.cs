@@ -19,9 +19,9 @@ namespace PhotoLiker
 	public class AutoLiker
 	{
 		public VkApi Api { get; private set; }
-		public long[] Ids { get; private set; }
+		public IList<long> Ids { get; private set; }
 
-		public AutoLiker(VkApi api, long[] ids)
+		public AutoLiker(VkApi api, IList<long> ids)
 		{
 			Api = api;
 			Ids = ids;
