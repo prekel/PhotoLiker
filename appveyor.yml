@@ -1,0 +1,44 @@
+version: 0.1.{build}
+image:
+- Visual Studio 2017
+# - Ubuntu1804
+configuration: Release
+platform: Any CPU
+install:
+- pwsh: scripts/install.ps1
+build_script:
+- pwsh: scripts/build.ps1
+after_build:
+- pwsh: scripts/publish.ps1
+#test_script:
+#- pwsh: scripts/test.ps1
+artifacts:
+- path: '\'
+  name: PhotoLiker_All_Files
+- path: '\bin\Release\netcoreapp2.2\publish\'
+  name: PhotoLiker_$(APPVEYOR_BUILD_VERSION)
+deploy:
+- provider: FTP
+  host: 
+    secure: tgFBLOzwRuRs8x/0Mq7WEw==
+  protocol: sftp
+  username: vladislav
+  password:
+    secure: Ms8unA4ChOoYMeatsRrA/g==
+  folder: PhotoLiker\PhotoLiker-$(APPVEYOR_BUILD_VERSION)
+  application: PhotoLiker_$(APPVEYOR_BUILD_VERSION)
+  on:
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017 
+    SHOULD_DEPLOY: true
+- provider: GitHub
+  tag: $(appveyor_repo_tag_name)
+  release: PhotoLiker $(appveyor_repo_tag_name)
+  description: $(appveyor_repo_tag_name) $(APPVEYOR_BUILD_VERSION)
+  auth_token:
+    secure: Npd8Pdh2luH0INNPoAQXoPC2g71ZM39Ys1Cu842ZZaRFt6B45Or6vy1bV10x0oSn
+  artifact: PhotoLiker_All_Files; PhotoLiker_$(APPVEYOR_BUILD_VERSION)
+  draft: false
+  prerelease: true
+  on:
+    branch: develop
+    appveyor_repo_tag: true
