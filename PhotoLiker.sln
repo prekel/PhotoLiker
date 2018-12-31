@@ -7,12 +7,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoLiker", "PhotoLiker.cs
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Debug|x86.Build.0 = Debug|Any CPU
+		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Release|x86.ActiveCfg = Release|Any CPU
 		{E798403C-C7A3-4601-861E-9820DA16B9AE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
