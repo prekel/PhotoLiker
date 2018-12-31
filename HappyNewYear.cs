@@ -34,7 +34,7 @@ namespace PhotoLiker
 		public async void Begin()
 		{
 			var r = new Random();
-			await Task.Delay(DateTimeOffset.Now - Time);
+			await Task.Delay(Time - DateTimeOffset.Now);
 
 			await Api.Account.SetOnlineAsync();
 			await Api.Messages.SendAsync(new MessagesSendParams() { UserId = Id, Message = Morning, RandomId = r.Next() });

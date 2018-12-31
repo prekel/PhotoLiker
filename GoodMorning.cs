@@ -47,7 +47,7 @@ namespace PhotoLiker
 						await Api.Messages.SendAsync(new MessagesSendParams() { UserId = Id, Message = Morning, RandomId = r.Next() });
 						break;
 					}
-					//await Task.Delay(r.Next(333, 1500));
+					//await Task.Time(r.Next(333, 1500));
 					await Task.Delay(r.Next(1000, 3000));
 				}
 				catch (IndexOutOfRangeException)

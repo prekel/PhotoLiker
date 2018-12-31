@@ -50,7 +50,7 @@ namespace PhotoLiker
 			{
 				public long HappyNewYearId { get; set; }
 				public string HappyNewYearMessage { get; set; }
-				public DateTimeOffset HappyNewTime { get; set; }
+				public DateTimeOffset HappyNewYearTime { get; set; }
 			}
 
 			public IList<HappyNewYearEntity> NewYears { get; set; }
@@ -130,6 +130,15 @@ namespace PhotoLiker
 				foreach (var i in config.GoodMornings)
 				{
 					new GoodMorning(api, i.GoodMorningId, i.GoodMorningMessage, i.GoodMorningDelay)
+						.Begin();
+				}
+			}
+
+			if (config.Mode.HasFlag(Config.AppMode.HappyNewYear))
+			{
+				foreach (var i in config.NewYears)
+				{
+					new HappyNewYear(api, i.HappyNewYearId, i.HappyNewYearMessage, i.HappyNewYearTime)
 						.Begin();
 				}
 			}
