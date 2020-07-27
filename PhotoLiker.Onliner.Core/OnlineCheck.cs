@@ -6,7 +6,7 @@ namespace PhotoLiker.Onliner.Core
     {
         public int CheckId { get; set; }
 
-        public int VkId { get; set; }
+        public long VkId { get; set; }
 
         public DateTimeOffset Time { get; set; }
         
