@@ -27,7 +27,9 @@ namespace PhotoLiker.Onliner.Core
 
                 entity.Property(t => t.Time).IsRequired();
                 entity.Property(t => t.VkId).IsRequired();
-                entity.Property(t => t.IsOnline).IsRequired();
+                entity.Property(t => t.Online).IsRequired();
+                entity.Property(t => t.OnlineMobile).IsRequired();
+                entity.Property(t => t.OnlineApp).IsRequired();
             });
         }
     }

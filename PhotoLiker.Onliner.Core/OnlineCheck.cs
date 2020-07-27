@@ -9,7 +9,11 @@ namespace PhotoLiker.Onliner.Core
         public long VkId { get; set; }
 
         public DateTimeOffset Time { get; set; }
+
+        public bool Online { get; set; }
         
-        public bool IsOnline { get; set; }
+        public bool? OnlineMobile { get; set; }
+
+        public long? OnlineApp { get; set; }
     }
 }
