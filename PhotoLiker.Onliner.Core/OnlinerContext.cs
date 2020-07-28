@@ -8,8 +8,8 @@ namespace PhotoLiker.Onliner.Core
     {
         private static Logger Log { get; } = LogManager.GetCurrentClassLogger();
 
-        public DbSet<OnlineCheck> Checks { get; set;  }
-        
+        public DbSet<OnlineCheck> Checks { get; set; }
+
         public OnlinerContext()
         {
         }
@@ -25,13 +25,12 @@ namespace PhotoLiker.Onliner.Core
 
             modelBuilder.Entity<OnlineCheck>(entity =>
             {
-                entity.HasKey(t => t.CheckId);
+                entity.HasKey(t => new {t.VkId, t.Time});
 
-                entity.Property(t => t.Time).IsRequired();
-                entity.Property(t => t.VkId).IsRequired();
+                //entity.Property(t => t.Time).IsRequired();
+                //entity.Property(t => t.VkId).IsRequired();
                 entity.Property(t => t.Online).IsRequired();
                 entity.Property(t => t.OnlineMobile);
-                entity.Property(t => t.OnlineApp);
             });
         }
     }

@@ -40,7 +40,7 @@ namespace PhotoLiker.Onliner.Core
                 Log.Debug("Принято");
                 Console.WriteLine(String.Join("; ", checks.Select(y => $"{y.VkId} {y.Online}")));
                 OnOnlinerChecked(new OnlinerEventArgs(checks));
-                await Task.Delay(1000);
+                await Task.Delay(9900);
             }
         }
 
@@ -61,8 +61,7 @@ namespace PhotoLiker.Onliner.Core
                     VkId = t.Id,
                     Online = t.Online!.Value,
                     Time = DateTimeOffset.Now,
-                    OnlineApp = t.OnlineApp,
-                    OnlineMobile = t.OnlineMobile
+                    OnlineMobile = t.OnlineMobile ?? false
                 });
         }
 
