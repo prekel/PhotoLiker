@@ -17,7 +17,7 @@ using VkNet.Enums.SafetyEnums;
 
 namespace PhotoLiker.Core
 {
-	public class SavedPhotoSaver : AbstractWorker
+	public class SavedPhotoSaver : AbstractVkWorker
 	{
 		public long Id { get; }
 

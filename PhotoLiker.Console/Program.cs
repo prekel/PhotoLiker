@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 
 using Newtonsoft.Json;
 
-
 using VkNet;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
@@ -22,6 +21,8 @@ using VkNet.NLog.Extensions.Logging;
 using VkNet.NLog.Extensions.Logging.Extensions;
 
 using NLog;
+
+using PhotoLiker.Onliner.Core;
 
 namespace PhotoLiker.Console
 {
@@ -43,9 +44,9 @@ namespace PhotoLiker.Console
             {
                 Log.Warn("Нет файла конфигурации ");
                 Log.Info("Создаётся и сохраняется конфигурция");
-                
+
                 config = new Config();
-                
+
                 using (var w = new StreamWriter("config.json"))
                 {
                     w.WriteLine(JsonConvert.SerializeObject(config, Formatting.Indented));
@@ -61,11 +62,10 @@ namespace PhotoLiker.Console
 
         public static void Main(string[] args)
         {
-
             System.Console.OutputEncoding = Encoding.UTF8;
             System.Console.InputEncoding = Encoding.UTF8;
             System.Console.CancelKeyPress += ConsoleOnCancelKeyPress;
-            
+
             var services = new ServiceCollection();
             // Регистрация логгера
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
@@ -80,15 +80,14 @@ namespace PhotoLiker.Console
                     CaptureMessageTemplates = true
                 });
             });
-            
+
             LogManager.LoadConfiguration("NLog.config");
             LogManager.Configuration.Variables["starttime"] = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss-ffff");
-            
+
             var api = new VkApi();
 
             var config = GetConfigOrCreateAndExitIfNotExist();
-            
-            
+
 
             Authorize(config, api);
 
@@ -130,9 +129,23 @@ namespace PhotoLiker.Console
 
             if (config.Mode.HasFlag(Config.AppMode.Onliner))
             {
-                new Onliner.Core.Onliner(api, config.OnlinerIds)
-                    .Begin();
+                var onliner = new Onliner.Core.Onliner(api, config.OnlinerIds);
+
+                if (config.Mode.HasFlag(Config.AppMode.DbSaver))
+                {
+                    if (args.Length == 1)
+                    {
+                        using var context = new OnlinerContext();
+                        context.Database.EnsureCreated();
+                        context.SaveChanges();
+                    }
+
+                    new DbSaver(onliner).Begin();
+                }
+
+                onliner.Begin();
             }
+
 
             while (true)
             {

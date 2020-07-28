@@ -16,7 +16,7 @@ using NLog;
 
 namespace PhotoLiker.Core
 {
-    public class AutoLiker : AbstractWorker
+    public class AutoLiker : AbstractVkWorker
     {
         private static Logger Log { get; } = LogManager.GetCurrentClassLogger();
 

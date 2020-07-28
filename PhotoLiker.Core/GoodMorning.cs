@@ -20,7 +20,7 @@ using VkNet.Enums.SafetyEnums;
 namespace PhotoLiker.Core
 {
 	[Obsolete]
-	public class GoodMorning : AbstractWorker
+	public class GoodMorning : AbstractVkWorker
 	{
 		private static Logger Log { get; } = LogManager.GetCurrentClassLogger();
 		

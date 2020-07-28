@@ -8,13 +8,15 @@ namespace PhotoLiker.Onliner.Core
     {
         private static Logger Log { get; } = LogManager.GetCurrentClassLogger();
 
+        public DbSet<OnlineCheck> Checks { get; set;  }
+        
         public OnlinerContext()
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=demo;Username=postgres;Password=qwerty123");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=onliner;Username=postgres;Password=qwerty123");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,8 +30,8 @@ namespace PhotoLiker.Onliner.Core
                 entity.Property(t => t.Time).IsRequired();
                 entity.Property(t => t.VkId).IsRequired();
                 entity.Property(t => t.Online).IsRequired();
-                entity.Property(t => t.OnlineMobile).IsRequired();
-                entity.Property(t => t.OnlineApp).IsRequired();
+                entity.Property(t => t.OnlineMobile);
+                entity.Property(t => t.OnlineApp);
             });
         }
     }

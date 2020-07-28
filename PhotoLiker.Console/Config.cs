@@ -19,7 +19,8 @@ namespace PhotoLiker
             GoodMorning = 4,
             Saver = 8,
             HappyNewYear = 16,
-            Onliner = 32
+            Onliner = 32,
+            DbSaver = 64
         }
 
         public AppMode Mode { get; set; } = AppMode.None;
