@@ -15,20 +15,18 @@ using VkNet.Model.RequestParams;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
-namespace PhotoLiker
+namespace PhotoLiker.Core
 {
-	public class SavedPhotoSaver
+	public class SavedPhotoSaver : AbstractWorker
 	{
-		public VkApi Api { get; private set; }
-		public long Id { get; private set; }
+		public long Id { get; }
 
-		public SavedPhotoSaver(VkApi api, long id)
+		public SavedPhotoSaver(VkApi api, long id) : base(api)
 		{
-			Api = api;
 			Id = id;
 		}
 
-		public async void Begin()
+		public override async Task Begin()
 		{
 			try
 			{

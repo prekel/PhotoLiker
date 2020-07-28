@@ -16,25 +16,29 @@ using VkNet.Enums.SafetyEnums;
 
 using Newtonsoft.Json;
 
-namespace PhotoLiker
-{
-	class SavedPhotoLiker
-	{
-		public VkApi Api { get; private set; }
-		public long Id { get; private set; }
-		public int Count { get; private set; }
-		public TimeSpan WaitOfflineTime { get; private set; }
+using NLog;
 
-		public SavedPhotoLiker(VkApi api, long id, int count, TimeSpan waittime)
+namespace PhotoLiker.Core
+{
+	public class SavedPhotoLiker : AbstractWorker
+	{
+		private static Logger Log { get; } = LogManager.GetCurrentClassLogger();
+		
+		public long Id { get;  }
+		public int Count { get; }
+		public TimeSpan WaitOfflineTime { get; }
+
+		public SavedPhotoLiker(VkApi api, long id, int count, TimeSpan waittime) : base(api)
 		{
-			Api = api;
 			Id = id;
 			Count = count;
 			WaitOfflineTime = waittime;
 		}
 
-		public async void Begin()
+		public override async Task Begin()
 		{
+			Log.Info("Запуск SavedPhotoLiker");
+			
 			var r = new Random();
 
 			while (true)

@@ -6,14 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
       <PackageReference Include="NLog" Version="4.7.2" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
       <PackageReference Include="VkNet" Version="1.54.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\PhotoLiker.Core\PhotoLiker.Core.csproj" />
     </ItemGroup>
 
 </Project>

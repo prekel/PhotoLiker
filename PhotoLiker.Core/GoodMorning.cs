@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using NLog;
+using NLog.Fluent;
+
 //using VkApiOAuth;
 
 using VkNet;
@@ -14,25 +17,28 @@ using VkNet.Model.RequestParams;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
-namespace PhotoLiker
+namespace PhotoLiker.Core
 {
-	public class GoodMorning
+	[Obsolete]
+	public class GoodMorning : AbstractWorker
 	{
-		public VkApi Api { get; private set; }
+		private static Logger Log { get; } = LogManager.GetCurrentClassLogger();
+		
 		public long Id { get; private set; }
 		public string Morning { get; private set; }
 		public TimeSpan Delay { get; private set; }
 
-		public GoodMorning(VkApi api, long id, string morning, TimeSpan delay)
+		public GoodMorning(VkApi api, long id, string morning, TimeSpan delay) : base(api)
 		{
-			Api = api;
 			Id = id;
 			Morning = morning;
 			Delay = delay;
 		}
 
-		public async void Begin()
+		public override async Task Begin()
 		{
+			Log.Info("Запуск GoodMorning");
+			
 			var r = new Random();
 			await Task.Delay(Delay);
 

@@ -21,7 +21,7 @@ namespace PhotoLiker.Onliner.Console
             api.AuthorizeAsync(new ApiAuthParams()
                 {AccessToken = ""});
             
-            var ch = new OnlineChecker(api);
+            var ch = new Core.Onliner(api);
 
             var res = ch.Check().Result;
         }
