@@ -2,12 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NLog" Version="4.7.5" />
+      <ProjectReference Include="..\PhotoLiker.Core\PhotoLiker.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="VkNet" Version="1.57.0" />
+      <PackageReference Include="VkNet.AudioBypassService" Version="1.7.0" />
     </ItemGroup>
 
 </Project>

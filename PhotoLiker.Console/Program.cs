@@ -24,6 +24,8 @@ using NLog;
 
 using PhotoLiker.Onliner.Core;
 
+using VkNet.AudioBypassService.Extensions;
+
 namespace PhotoLiker.Console
 {
     public class Program
@@ -80,11 +82,12 @@ namespace PhotoLiker.Console
                     CaptureMessageTemplates = true
                 });
             });
+            services.AddAudioBypass();
 
             LogManager.LoadConfiguration("NLog.config");
             LogManager.Configuration.Variables["starttime"] = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss-ffff");
 
-            var api = new VkApi();
+            var api = new VkApi(services);
 
             var config = GetConfigOrCreateAndExitIfNotExist();
 
@@ -146,6 +149,15 @@ namespace PhotoLiker.Console
                 //onliner.Begin();
             }
 
+            if (config.Mode.HasFlag(Config.AppMode.AudioMover))
+            {
+                for (var i = config.AudioMoverStart; i < config.AudioMoverEnd; i += config.AudioMoverStep)
+                {
+                    var audioMover = new AudioMover.Core.AudioMover(api, config.AudioMoverId, config.AudioMoverName,
+                        i, i + config.AudioMoverStep);
+                    audioMover.Begin();
+                }
+            }
 
             while (true)
             {

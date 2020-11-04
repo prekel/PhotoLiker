@@ -9,12 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" Version="4.7.2" />
-    <PackageReference Include="VkNet" Version="1.54.0" />
+    <PackageReference Include="NLog" Version="4.7.5" />
+    <PackageReference Include="VkNet" Version="1.57.0" />
     <PackageReference Include="VkNet.NLog.Extensions.Logging" Version="1.3.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PhotoLiker.AudioMover.Core\PhotoLiker.AudioMover.Core.csproj" />
     <ProjectReference Include="..\PhotoLiker.Core\PhotoLiker.Core.csproj" />
     <ProjectReference Include="..\PhotoLiker.Onliner.Core\PhotoLiker.Onliner.Core.csproj" />
   </ItemGroup>

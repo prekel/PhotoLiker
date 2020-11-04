@@ -11,6 +11,7 @@ namespace PhotoLiker
 
         public string? AccessToken { get; set; }
 
+        [Flags]
         public enum AppMode
         {
             None = 0,
@@ -20,7 +21,8 @@ namespace PhotoLiker
             Saver = 8,
             HappyNewYear = 16,
             Onliner = 32,
-            DbSaver = 64
+            DbSaver = 64,
+            AudioMover = 128
         }
 
         public AppMode Mode { get; set; } = AppMode.None;
@@ -52,5 +54,15 @@ namespace PhotoLiker
         public IList<HappyNewYearEntity> NewYears { get; set; } = new List<HappyNewYearEntity>();
 
         public long SaverId { get; set; }
+
+        public long AudioMoverId { get; set; }
+
+        public string AudioMoverName { get; set; }
+
+        public int AudioMoverStart { get; set; }
+
+        public int AudioMoverEnd { get; set; }
+        
+        public int AudioMoverStep { get; set; }
     }
 }
