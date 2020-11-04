@@ -143,7 +143,7 @@ namespace PhotoLiker.Console
                     new DbSaver(onliner).Begin();
                 }
 
-                onliner.Begin();
+                //onliner.Begin();
             }
 
 
